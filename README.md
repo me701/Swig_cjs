@@ -1,6 +1,8 @@
 # Swig Guide
 
 # Quickstart:
+build with command make
+
 swig -python example.i
 gcc -c -fpic example.c example_wrap.c -I/home/clinton/anaconda3/include/python3.7m
 gcc -shared example.o example_wrap.o -o _example.so
