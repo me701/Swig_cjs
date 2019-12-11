@@ -1,19 +1,29 @@
 # Swig Guide
 
 # Quickstart:
+swig -python example.i
+gcc -c -fpic example.c example_wrap.c -I/home/clinton/anaconda3/include/python3.7m
+gcc -shared example.o example_wrap.o -o _example.so
+
 Create Header (.h) and Implementation files (.cpp)
 
 Create swig interface file (.i)
-EX:
-    %module swig_example
-    %{
-    #include "swig_example.h"
-    %}
+2.4.1 SWIG interface file
 
-    %include "std_vector.i"
-    %template(DoubleVector) std::vector<double>;
+/* File : example.i */
+%module example
+%{
+/* Put headers and other declarations here */
+extern double My_variable;
+extern int    fact(int);
+extern int    my_mod(int n, int m);
+%}
 
-    %include "swig_example.h"
+extern double My_variable;
+extern int    fact(int);
+extern int    my_mod(int n, int m);
+
+The interface file contains ISO C function prototypes and variable declarations. The %module directive defines the name of the module that will be created by SWIG. The %{ %} block provides a location for inserting additional code, such as C header files or additional C declarations, into the generated C wrapper code.
 
 There are now three files in the folder
 # Compiling
