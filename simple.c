@@ -21,7 +21,8 @@ void arange(int size, double *arr){
 
 int heat_transfer(int argc)
 {
-  // Problem parameters
+
+// Problem parameters
 double q = 0;
 double k = 1;
 int n = 500;
@@ -74,42 +75,13 @@ do
   memcpy(T, swap, sizeof(swap));
 
 
-  if (it % 10 == 0)
+  if (it % 500 == 0)
   {
     printf("iter %i,  error %8.3e\n", it, r);
+      //printf("r=%i\n", r);
   }
 }
-while ((r > 1e-4)&&(it < 10000));
-//printf("FINAL: iter %i,  error %8.3e\n", it, r);
-//jacobi_et = omp_get_wtime() - jacobi_et;
-
-// Write to file as x, y, T using C-style writing
-//double write_et = omp_get_wtime();
-//FILE *fh;
-//fh = fopen("temperatures.txt", "w");
-for (int i = 0; i < n; ++i)
-{
-//  double x = i*Delta;
-  for (int j = 0; j < n; ++j)
-  {
-  //  double y = j*Delta;
-    //printf(fh, "%12.6e  %12.6e  %12.6e\n", x, y, T_old[i*n+j]);
-  }
-}
-//fclose(fh);
-//write_et = omp_get_wtime() - write_et;
-
-// Free the memory
-//delete [] T;
-//delete [] T_old;
-
-// Finalize timer
-//total_et = omp_get_wtime() - total_et;
-//printf("JACOBI ELAPSED TIME: %8.3e seconds\n", jacobi_et);
-//printf(" WRITE ELAPSED TIME: %8.3e seconds\n", write_et);
-//printf(" TOTAL ELAPSED TIME: %8.3e seconds\n", total_et);
-
-
+while ((it > 1e-4)&&(it < 10000));
 
 return 0;
 }
